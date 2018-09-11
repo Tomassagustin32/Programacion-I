@@ -1,36 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-void insertion(int data[], int len);
+#define T 2
 
 int main()
 {
-    int vector[5]={3,5,1,2,6};
-    int i;
-    insertion(vector, 5);
+    //vectores paralelos
 
-    for(i=0; i<5; i++)
+    int legajos[T];
+    char nombres[T][21];
+    int notas[T];
+    float alturas[T];
+    int i;
+
+    for(i=0; i<T; i++)
     {
-        printf("%d\n", vector[i]);
+        printf("Ingrese legajo: ");
+        scanf("%d", &legajos[i]);
+
+        printf("Ingrese nombre: ");
+        fflush(stdin);
+        gets(nombres[i]);
+        printf("Ingrese notas: ");
+        scanf("%d", &notas[i]);
+        printf("Ingrese alturas: ");
+        scanf("%f", &alturas[i]);
     }
+
+    printf("%4s %15s %2s %5s\n","Legajo","Nombre","Nota","Altura");
+    for(i=0; i<T; i++)
+    {
+        printf("%4d     %15s     %2d     %5f\n", legajos[i], nombres[i], notas[i], alturas[i]);
+    }
+
+
+
+
+
+
 
     return 0;
-}
-
-void insertion(int data[], int len)
-{
-    int i, j;
-    int temp;
-    for(i=1; i<len; i++)
-    {
-        temp=data[i];
-        j=i-1;
-        while(j>=0 && temp<data[j]) //temp<data[j]
-        {
-            data[j+1]=data[j];
-            j--;
-        }
-        data[j+1]=temp; //insercion
-    }
-
 }
