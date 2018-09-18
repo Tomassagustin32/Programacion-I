@@ -1,78 +1,79 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define T 2
+#define T 5
+#include <conio.h>
 
-void cargarAlumnos(int[], char[][21], int[], float[], int);
-void mostrarAlumnos(int[], char[][21], int[], float[], int);
+/** \brief busca espacio disponible
+ *
+ * \param int[] listado de enteros
+ * \param int tamañado del listado
+ * \param int el valor ilogico
+ * \return int [-1] si no hay espacio, [>=0] un indice donde guardar
+ *
+ */
+int buscarLibre(int[], int, int);
 
-//funcion: que ordene por nombre A-Z
-//funcion: alumnos aprobados con nota>6
-//funcion: alumnos que se llaman Juan
-//funcion: alumnos cuyo nombre comienza con P
-//funcion: alumno con mas nota(sabiendo qe puede ser mas de uno)
-//funcion: alumno mas mediocre legajo=100 nota=5 se llama pepe y mide 1.75
-//funcion: ingresar un legajo y permitir la modificacion de la nota
-//TRANSOFRMAR LA CARGA DE DATOS EN UNA CARGA ALEATORIA
-//TODO EN MENU D OPCIONES
 
 int main()
 {
-    //vectores paralelos
-
-    int legajos[T];
-    char nombres[T][21];
-    int notas[T];
-    float alturas[T];
-    char mail[T][50];
+    //Crear vector de enteros
+    //inicializarlo en -1
+    //do-while pidiendo datos
+    int vector[T];
     int i;
-
-    cargarAlumnos(legajos, nombres, notas, alturas, T);
-    mostrarAlumnos(legajos, nombres, notas, alturas, T);
-
+    int indice;
+    char seguir;
+    int bandera;
+    //conio.h
 
     for(i=0; i<T; i++)
     {
-        printf("Ingrese legajo: ");
-        scanf("%d", &legajos[i]);
+        if(vector[i] == -1)
+        {
+            printf("Ingrese un numero: ");
+            scanf("%d", &vector[i]);
+            bandera++;
+            break;
+        }
+    }
+    if(i==T)
+    {
+        printf("NO HAY MAS LUGAR");
+    }
 
-        printf("Ingrese nombre: ");
+    do
+    {
+        indice = buscarLibre(vector, T, -1);
+        if(indice!=-1)
+        {
+            printf("Ingrese un dato entero: ");
+            scanf("%d", &vector[indice]);
+        }else{
+            printf("No hay espacio");
+            break;
+        }
+
+
+        printf("Desea ingresar otro?");
+        seguir = getche();
         fflush(stdin);
-        gets(nombres[i]);
-        printf("Ingrese notas: ");
-        scanf("%d", &notas[i]);
-        printf("Ingrese alturas: ");
-        scanf("%f", &alturas[i]);
     }
-
-    printf("%4s %15s %2s %5s\n","Legajo","Nombre","Nota","Altura");
-    for(i=0; i<T; i++)
-    {
-        printf("%4d     %15s     %2d     %5f\n", legajos[i], nombres[i], notas[i], alturas[i]);
-    }
+    while(seguir='s');
 
     return 0;
 }
 
-void cargarAlumnos(int legajos[], char nombres[][21], int notas[], float alturas[], int T);
+int buscarLibre(int numeros[], int tam, int i)
 {
-
- for(i=0; i<T; i++)
+    int indice;
+    int ilogico;
+    for(i=0; i<tam; i++)
     {
-        printf("Ingrese legajo: ");
-        scanf("%d", &legajos[i]);
-
-        printf("Ingrese nombre: ");
-        fflush(stdin);
-        gets(nombres[i]);
-        printf("Ingrese notas: ");
-        scanf("%d", &notas[i]);
-        printf("Ingrese alturas: ");
-        scanf("%f", &alturas[i]);
+        if(numeros[i] == ilogico)
+        {
+            indice=i;
+            break;
+        }
     }
-
-    printf("%4s %15s %2s %5s\n","Legajo","Nombre","Nota","Altura");
-    for(i=0; i<T; i++)
-    {
-        printf("%4d     %15s     %2d     %5f\n", legajos[i], nombres[i], notas[i], alturas[i]);
-    }
+    return indice;
 }
