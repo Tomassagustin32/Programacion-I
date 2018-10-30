@@ -1,65 +1,82 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-eAlumno* nuevoAlumno();
-void mostrarAlumno();
+typedef struct
+{
+    int id;
+    char nombre[50];
+    char apellido[50];
+    int estaVacio;
+}eEmpleado;
+
+eEmpleado* constructor(int id, char* nombre, char* apellido);
+
+void mostrarEmpleado();
+/*eAlumno* nuevoAlumno();
+void mostrarEmpleado();
 int eAlumno_setName(eAlumno* this, char* nombre);
 char* eAlumno_getName(eAlumno* this);
-
+*/
 int main()
 {
    char name[500], lastName[500], id[500],isEmpty[500];
    int cont=1;
-
+   eEmpleado lista[10];
    FILE * pFile;
 
-   pFile = fopen ("MOCK_DATA", "r");
+   pFile = fopen ("data.csv", "r");
 
-   while(!feof(pFile))
+   while(cont<10)
    {
 
        if(cont %250 == 0)
        {
            system("pause");
        }
+
+       fscanf(pFile, "%[^,], %[^,], %[^,], %[^\n]\n", id, name, lastName, isEmpty);
+
+       eEmpleado* e = constructor(atoi (id), name, lastName);
+       lista[cont]=*e;
+       //printf("%d--%s--%s\n", e->id, e->nombre, e->apellido);
        cont++;
-
-
-
-       fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", id, name, lastName,isEmpty);
-
-       printf("%s - %s, %s - %s\n", id, name, lastName, isEmpty);
 
    }
 
-   fclose(pFile);
+  /* fclose(pFile);
+   int i;
+   for(i=0; i<10; i++)
+   {
 
+   }
+*/
    return(0);
 }
 
-eAlumno* nuevoAlumno(char nombre[50], int i)
+eEmpleado* constructor(int id, char* nombre[50], char* apellido[50])
 {
-    eAlumno* miAlumno;
+    eEmpleado* empleado;
+    eEmpleado = malloc(sizeof(eEmpleado));
 
-    /*miAlumno = (eAlumno*) malloc(sizeof(eAlumno));
-    if(miAlumno!=NULL)
+    if(empleado!=NULL)
     {
-        strcpy(miAlumno->nombre, "");
-        miAlumno->edad = 0;
+        empleado->id=id;
+        strcpy(empleado->nombre, nombre);
+        strcpy(empleado->apellido, apellido);
+
     }
-    */
 
-    miAlumno = calloc(sizeof(eAlumno),1);
 
-    return miAlumno;
+
+    return empleado;
 }
 
-void mostrarAlumno(eAlumno* unAlumno)
+void mostrarEmpleado(eEmpleado* unEmpleado)
 {
-    printf("%s---%d", unAlumno->nombre, unAlumno->edad);
+    printf("%s---%s---%d", unEmpleado->nombre, unEmpleado->apellido, unEmpleado->id);
 }
 
-int eAlumno_setName(eAlumno* this, char* nombre)
+/*int eAlumno_setName(eAlumno* this, char* nombre)
 {
     int estado = 0;
     if(this != NULL)
@@ -86,3 +103,4 @@ char* eAlumno_getName(eAlumno* this)
     }
     return nombre;
 }
+*/
