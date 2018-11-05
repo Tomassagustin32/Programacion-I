@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 #include "Employee.h"
 
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
+/** \brief Parsea los datos de los empleados desde el archivo data.csv (modo texto).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
@@ -12,6 +12,7 @@
  */
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
+    ll_add(LinkedList* this, empleado);
 
     return 1;
 }

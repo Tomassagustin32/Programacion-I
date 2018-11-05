@@ -77,8 +77,50 @@ int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas)
     if(this != NULL)
     {
         estado = 1;
-        strcpy(this->id, id);
+        strcpy(this->horasTrabajadas, horasTrabajadas);
     }
 
     return estado;
+}
+
+int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas)
+{
+    int* horasTrabajadas = "";
+
+    if(this != NULL)
+    {
+        horasTrabajadas = this-> horasTrabajadas;
+    }
+    else{
+        printf("Error en el programa");
+    }
+
+    return horasTrabajadas;
+}
+
+int employee_setSueldo(Employee* this,int sueldo)
+{
+    int estado = 0;
+    if(this != NULL)
+    {
+        estado = 1;
+        strcpy(this->sueldo, sueldo);
+    }
+
+    return estado;
+}
+
+int employee_getSueldo(Employee* this,int* sueldo)
+{
+    int* sueldo = "";
+
+    if(this != NULL)
+    {
+        sueldo = this-> sueldo;
+    }
+    else{
+        printf("Error en el programa");
+    }
+
+    return sueldo;
 }
