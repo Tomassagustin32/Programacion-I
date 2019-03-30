@@ -1,62 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "bibliotecaTomas.h"
 
 int main()
 {
-    //PIDO UNA PALABRA Y LA MUESTRO
-    /*char palabra[20];
+    int numeroOculto;
+    int numeroIngresado;
+    char teclaIngresada;
+    int jugar;
 
-    scanf("%s", palabra);
-    printf("La palabra es: %s", palabra);*/
-//PIDO BASE Y ALTURA Y CALCULO EL AREA
-    /*int base;
-    int altura;
-    int area;
-
-    printf("Ingrese base: ", &base);
-    scanf("%d", &base);
-    printf("Ingrese altura: ", &altura);
-    scanf("%d", &altura);
-    area=(base*altura)/2;
-    printf("El area es: %d", area);*/
-//PIDO 5 NUMEROS Y MUESTRO EL MAXIMO, EL MINIMO Y EL PROMEDIO
-    /*int maximo;
-    int minimo;
-    int promedio;
-    int acumulador;
-    int auxInt;
-    int i;
-
-    printf("Ingrese un numero: ");
-    scanf("%d", &auxInt);
-
-    minimo=auxInt;
-    maximo=auxInt;
-    acumulador=auxInt;
-
-    for(i=0; i<4; i++)
+    teclaIngresada = 's' ;
+    while(teclaIngresada == 's')
     {
-        printf("Ingrese un numero: ");
-        scanf("%d", &auxInt);
-        acumulador=acumulador+auxInt;
+        numeroOculto = getNumeroAleatorio(1,100,1);
 
-        if(auxInt>maximo)
+        jugar = 1;
+        while(jugar == 1)
         {
-            maximo=auxInt;
-        }
-        if(auxInt<minimo)
-        {
-            minimo=auxInt;
-        }
+            numeroIngresado = getInt("Ingrese un numero (0-99)\n");
+            if(numeroIngresado < 0)
+            {
+                jugar = 0;
+            }
+            else if(numeroIngresado == numeroOculto)
+            {
+                printf("FELICITACIONES GANASTE!\n");
+                jugar = 0;
+            }
+            else if(numeroIngresado > numeroOculto)
+            {
+                printf("EL NUMERO QUE INGRESASTE ES GRANDE!\n");
+            }
+            else if(numeroIngresado < numeroOculto)
+            {
+                printf("EL NUMERO QUE INGRESASTE ES CHICO!\n");
+            }
 
+        }
+        teclaIngresada = getChar("Desea seguir jugando? (s/n)\n");
     }
-//LOS MUESTRO
-    printf("El maximo es: %d\n", maximo);
-    printf("El minimo es: %d\n", minimo);
-    printf("El promedio es: %d", acumulador/5);
-
-*/
-
-
     return 0;
 }
