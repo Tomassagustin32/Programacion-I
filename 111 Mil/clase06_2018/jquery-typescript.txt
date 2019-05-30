@@ -1,0 +1,64 @@
+1.- crear archivo de configuracion (tsconfig.json)
+
+---> tsc --init
+
+
+2.- agregar en el archivo de configuracion el path del archivo de definicion
+        
+"paths": {
+            
+		"jquery" : [ "libs/jquery/" ]
+       
+	 }
+
+
+
+los anteriores son para poder depurar en la consola integrada. Con estos alcanza:
+4.- agregar el archivo de definiciones ([nombre].d.ts) en la misma ruta especificada
+3.- agregar en el archivo .ts la referencia al arhcivo de definiciones [nombre].d.ts
+
+--->/// <reference path="libs/jquery/index.d.ts" />
+
+
+
+
+
+
+
+NOTA: los archivos de definiciones para jQuery requieren que la version de typescript sea 2.3 o >
+
+( con la version 2.4.2 se probo)
+
+para actualizar typescript:
+
+---> npm update -g typescript
+
+
+--->actualizar version del visual code -> 1.14.2 (junio 2017)
+
+
+
+
+
+
+FAVICON
+--------
+
+        <link href="./img/utnLogo.png" rel="icon" type="image/png" />
+
+
+/********************************************************************************************************/
+para generar la inclusion de archivos de definiciones:
+
+1- generar package.json
+---> npm init
+
+2- instalar @types/jquery
+---> npm install --save @types/jquery
+
+
+/***********************************************/
+1- instalar typings en el proyecto
+---> typings install dt~jquery --global --save
+
+
